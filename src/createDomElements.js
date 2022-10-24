@@ -13,14 +13,14 @@ function onFetchError() {
 }
 
 function createMarkup(data) {
-    if (data.length > 1 && data.length < 10) {
+    if (data.length >= 2 && data.length <= 10) {
         clearFeild();
         const markup = createCountryList(data);
         refs.countryListEl.insertAdjacentHTML('afterbegin', markup);
     } else if (data.length > 10) {
         clearFeild();
         Notify.info('Too many matches found. Please enter a more specific name.', {position: 'center-top', width: '300px', fontSize: '16px', cssAnimationStyle: 'zoom', pauseOnHover: false, showOnlyTheLastOne: true});
-    } else {
+    } else if(data.length === 1) {
         clearFeild();
         const markup = createCountryElement(...data);
         refs.countryInfoEl.insertAdjacentHTML('afterbegin', markup);
